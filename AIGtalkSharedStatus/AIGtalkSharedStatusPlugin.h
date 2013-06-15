@@ -9,6 +9,9 @@
 
 #import <Adium/AIPlugin.h>
 #import <AdiumLibpurple/AILibpurplePlugin.h>
+#import "gtalk-shared-status.h"
+#import <objc/objc-class.h>
+#import "ESPurpleJabberAccount.h"
 
 @interface AIGtalkSharedStatusPlugin : AIPlugin <AILibpurplePlugin>
 {

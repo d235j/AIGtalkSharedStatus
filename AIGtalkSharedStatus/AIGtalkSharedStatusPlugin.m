@@ -7,9 +7,6 @@
 //
 
 #import "AIGtalkSharedStatusPlugin.h"
-#import "gtalk-shared-status.h"
-#import <objc/objc-class.h>
-#import "ESPurpleJabberAccount.h"
 
 #define KEY_JABBER_PRIORITY_AWAY		@"Jabber:Priority when Away"
 
@@ -33,6 +30,26 @@ extern void purple_init_gtalk_shared_status_plugin();
 {
     // load the actual plugin.
     purple_init_gtalk_shared_status_plugin();
+}
+
+- (NSString *) pluginAuthor
+{
+    return @"David Ryskalczyk";
+}
+
+- (NSString *) pluginVersion
+{
+    return @"0.1";
+}
+
+- (NSString *) pluginDescription
+{
+    return @"Support for Google Shared Status in Adium 1.7";
+}
+
+- (NSString *) pluginURL
+{
+    return @"https://github.com/d235j/AIGtalkSharedStatus";
 }
 
 @end
