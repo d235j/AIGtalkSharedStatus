@@ -1,0 +1,40 @@
+These are general instructions to build and install my purple plugins.
+
+LINUX:
+
+To build the plugin you have to install gcc, GNU make, pkg-config and pidgin 
+developing dependencies (or maybe only libpurple if in your os they are 
+distribuited separately). I.e. in Debian/Ubuntu, open a terminal and type:
+
+sudo apt-get install gcc make pkg-config pidgin-dev
+
+then to build type:
+
+make 
+
+to install (default directory is ~/.purple/plugins) type:
+
+make install
+
+You can also create a compressed tar by typing:
+
+make tar
+
+
+
+WINDOWS:
+
+It's hard for non experts to build the plugin in Windows so the best solution
+is to download the binary directly from site.
+
+If you feel brave you have two ways and all of them explained in 
+
+http://developer.pidgin.im/wiki/Scripting%20and%20Plugins#HowdoIcompileapluginWindows
+
+where there's written to setup a build environment like that in 
+
+http://developer.pidgin.im/wiki/BuildingWinPidgin
+
+I've included the Mingw Makefile that I use to build my plugins for Windows.
+
+

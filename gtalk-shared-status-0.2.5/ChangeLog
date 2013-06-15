@@ -1,0 +1,37 @@
+Date        Version Note
+
+16/10/2011  0.2.5   Now stripping markup in new status when updating shared
+                    status to prevent markup being sent and shown on other 
+                    Google shared status capable clients. Thanks to Cyryl.
+
+16/10/2011  0.2.4   Changed the default behaviour on plugin load. Now all
+                    accounts are enabled by default.
+
+13/10/2011  0.2.3   Quick fix to manage namespace prefix in shared status XML.
+
+15/07/2011  0.2.2   Added an alert to warn the user when changing from Invisible
+                    to Idle/Away.
+                    
+10/07/2011  0.2.1   Now you can/have to choose what accounts should use GSS.
+
+10/07/2011  0.2     Added a way to check Google Shared Status compatibility.
+                    Now you use google apps email address (no need to be 
+                    gmail.com).
+                    Found a way to manage status and added the Unique shared
+                    status that propagates every change of GSS of any account
+                    to any other active Google account.
+
+19/01/2011  0.1.4   Nothing new but I've add a Makefile to make compiling easier
+                    and more efficient. Now unused dependencies like gtk are no
+                    more needed (Finch users should be happy!)
+
+29/06/2010  0.1.3   Fixed a bit of minor bugs. Now status-list are filled in the
+                    same way that Google Talk does (before changes, the most 
+                    recent status for Google Talk was the least recent status 
+                    for the plugin and vice-versa)
+                    
+29/06/2010  0.1.2   (Finally) Fixed a bug that freezes Pidgin with new accounts
+                    (status-list node)
+                    
+28/06/2010  0.1.1   Fixed a bug that freezes Pidgin with new accounts 
+                    (status-list node). Thanks to  Xuchen Yao

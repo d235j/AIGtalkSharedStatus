@@ -1,0 +1,85 @@
+Gtalk Shared Status
+
+Description:
+Adds Google Shared Status compatibility that permit to set the status for all 
+the resources connected. This allows to go Invisible…
+
+NOTE:
+o - You can choose which accounts use Google Shared Status in plugin options.
+    All jabber accounts are enabled by default.  
+
+o - Now it works with Google Apps addresses too.
+
+o - The plugin is written to work with libpurple, so it (should) works with
+    each client based on libpurple like Finch, …
+    
+o - The statusbox and the icon in notification area are manged in a quite tricky
+    way in Pidgin. So it can happen that Pidgin doesn’t report correctly the 
+    current status of the resource (which is the shared status).
+    
+o - I've added a mode called Unique shared status that propagates every change 
+    of GSS of any account to any other active Google account. With this option 
+    disabled, all accounts are managed indipendently. Unique shared status is 
+    enabled by default, this means that every change in a resource which address 
+    is managed by Pidgin/Finch propagates to every other account managed. I.e. 
+    if I use three Google email addresses : pizza@gmail.com, 
+    spaghetti@gmail.com, mandolino@italy.it (Google Apps) and I use Pidgin at 
+    home managing pizza, spaghetti and mandolino and Gmail (web client) at work 
+    managing pizza, if I set the status “Prosecco is my favorite white wine” at 
+    work, this be set by Pidgin for pizza, spaghetti and mandolino too.
+    
+o - There's an issue when you change from status Invisible to Idle/Away: shared 
+    status does not manage Away/Idle that is a per-resource task. I cannot find
+    an effective solution because I can't simply switch to Available/DnD first
+    and then to Idle/Away (maybe this will become a plugin option). This would
+    change the shared staus of all active resources to Available/DnD and then
+    only Pidgin/Finch resource to Idle Away and maybe this is not what we want.
+    For now I've only added an alert to warn the user that changing from 
+    Invisible to Idle/Away will leave the shared status invisible and, if he/she
+    wants, to switch to Available or DnD first and then to Idle/Away.
+
+o - The plugin should work with multiple accounts.
+
+TO DO:
+Add an option to force Pidgin (or other client) status at startup.
+
+*** I’ve been asked to build the plugin for Adium too. Unfortunately I’m not a 
+Mac User and I don’t have a Mac nor a powerful pc to run a Virtual Machine to 
+run MacOS (I work on a old AMD 3200!) and, to tell the truth, I don’t have the 
+time to do the work now. So if any Mac User wants to translate and build the 
+plugin for Adium I’ll be happy to add it in this page. ***
+
+Contacts:
+For bugs reports, hints, … email me at federico.zanco ( at ) gmail.com.
+
+How to install:
+Read the INSTALL file.
+
+How to use:
+1)  Compile and Install (read INSTALL) or Download (from 
+    http://www.siorarina.net/gtalk-shared-status/) the plugin for your arch.
+
+    Linux: if you don't have GNU make program installed on your system, to 
+    install the plugin manually copy gtalk-shared-status.so in your purple home 
+    dir:
+    
+    (if ~/.purple/plugins/ does not exist: $ mkdir ~/.purple/plugins/ )
+    $ cp gtalk-shared-status.so ~/.purple/plugins/
+
+    Windows: Move gtalk-shared-status.dll in Pidgin plugins dir (I suppose you 
+    can create C:\Documents and Settings\<user>\Applications data\.purple\plugins 
+    and move the plugin there). In Windows it should be something like 
+    C:\Programmi\Pidgin\plugins\
+
+2)  Restart Pidgin and in Tools/Plugins you should see Gtalk Shared Status Plugin
+
+    Simply enable the plugin and just change to your favourite status. Note that
+    at startup the plugin reads and sets the status saved on the server. The 
+    plugin (should) works with multiple accounts. You have to choose what 
+    accounts use Gtalk Shared Status in plugin options (Tool/Plugins)
+
+Issues:
+An application restart is required when enabling the plugin with already 
+connected accounts
+
+

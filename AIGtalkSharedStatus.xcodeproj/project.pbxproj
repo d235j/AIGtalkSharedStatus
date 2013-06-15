@@ -1,0 +1,374 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		632B7D37176D244400F4F28F /* AIGtalkSharedStatusPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */; };
+		632B7D38176D244400F4F28F /* ESPurpleJabberAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */; };
+		632B7D3F176D245800F4F28F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 632B7D3D176D245800F4F28F /* InfoPlist.strings */; };
+		639ABD85176CD21300F752D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABD84176CD21300F752D7 /* Cocoa.framework */; };
+		639ABDFE176CD49B00F752D7 /* libglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABDF4176CD45800F752D7 /* libglib.framework */; };
+		639ABDFF176CD49B00F752D7 /* libgobject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABDF5176CD45800F752D7 /* libgobject.framework */; };
+		639ABE00176CD49B00F752D7 /* libintl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABDF6176CD45800F752D7 /* libintl.framework */; };
+		639ABE02176CD49B00F752D7 /* libpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABDF8176CD45800F752D7 /* libpurple.framework */; };
+		639ABE07176CD4CE00F752D7 /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABE03176CD4B000F752D7 /* Adium.framework */; };
+		639ABE08176CD4CE00F752D7 /* AIUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABE04176CD4B000F752D7 /* AIUtilities.framework */; };
+		639ABE0B176CD60E00F752D7 /* gtalk-shared-status.c in Sources */ = {isa = PBXBuildFile; fileRef = 639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */; };
+		639ABE0E176CD83E00F752D7 /* AdiumLibpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABE0C176CD83600F752D7 /* AdiumLibpurple.framework */; };
+		639E1418176CE06D00A9BE53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639E1416176CE06700A9BE53 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIGtalkSharedStatusPlugin.h; path = AIGtalkSharedStatus/AIGtalkSharedStatusPlugin.h; sourceTree = SOURCE_ROOT; };
+		632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIGtalkSharedStatusPlugin.m; path = AIGtalkSharedStatus/AIGtalkSharedStatusPlugin.m; sourceTree = SOURCE_ROOT; };
+		632B7D34176D244400F4F28F /* CBPurpleAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBPurpleAccount.h; path = AIGtalkSharedStatus/CBPurpleAccount.h; sourceTree = SOURCE_ROOT; };
+		632B7D35176D244400F4F28F /* ESPurpleJabberAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESPurpleJabberAccount.h; path = AIGtalkSharedStatus/ESPurpleJabberAccount.h; sourceTree = SOURCE_ROOT; };
+		632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESPurpleJabberAccount.m; path = AIGtalkSharedStatus/ESPurpleJabberAccount.m; sourceTree = SOURCE_ROOT; };
+		632B7D39176D244B00F4F28F /* AIGtalkSharedStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AIGtalkSharedStatus-Info.plist"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist"; sourceTree = SOURCE_ROOT; };
+		632B7D3A176D244B00F4F28F /* AIGtalkSharedStatus-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AIGtalkSharedStatus-Prefix.pch"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		632B7D3E176D245800F4F28F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = AIGtalkSharedStatus/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		639ABD81176CD21300F752D7 /* AIGtalkSharedStatus.AdiumLibpurplePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIGtalkSharedStatus.AdiumLibpurplePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		639ABD84176CD21300F752D7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		639ABDF4176CD45800F752D7 /* libglib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libglib.framework; path = ../adium/Frameworks/libglib.framework; sourceTree = "<group>"; };
+		639ABDF5176CD45800F752D7 /* libgobject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libgobject.framework; path = ../adium/Frameworks/libgobject.framework; sourceTree = "<group>"; };
+		639ABDF6176CD45800F752D7 /* libintl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libintl.framework; path = ../adium/Frameworks/libintl.framework; sourceTree = "<group>"; };
+		639ABDF8176CD45800F752D7 /* libpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpurple.framework; path = ../adium/Frameworks/libpurple.framework; sourceTree = "<group>"; };
+		639ABE03176CD4B000F752D7 /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Adium.framework; path = ../adium/build/Debug/Adium.framework; sourceTree = "<group>"; };
+		639ABE04176CD4B000F752D7 /* AIUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AIUtilities.framework; path = ../adium/build/Debug/AIUtilities.framework; sourceTree = "<group>"; };
+		639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "gtalk-shared-status.c"; path = "gtalk-shared-status-0.2.5/gtalk-shared-status.c"; sourceTree = SOURCE_ROOT; };
+		639ABE0A176CD60E00F752D7 /* gtalk-shared-status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtalk-shared-status.h"; path = "gtalk-shared-status-0.2.5/gtalk-shared-status.h"; sourceTree = SOURCE_ROOT; };
+		639ABE0C176CD83600F752D7 /* AdiumLibpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdiumLibpurple.framework; path = ../adium/build/Debug/AdiumLibpurple.framework; sourceTree = "<group>"; };
+		639E1416176CE06700A9BE53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		639ABD7E176CD21300F752D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				639ABE07176CD4CE00F752D7 /* Adium.framework in Frameworks */,
+				639ABE0E176CD83E00F752D7 /* AdiumLibpurple.framework in Frameworks */,
+				639ABE08176CD4CE00F752D7 /* AIUtilities.framework in Frameworks */,
+				639ABD85176CD21300F752D7 /* Cocoa.framework in Frameworks */,
+				639E1418176CE06D00A9BE53 /* Foundation.framework in Frameworks */,
+				639ABDFE176CD49B00F752D7 /* libglib.framework in Frameworks */,
+				639ABDFF176CD49B00F752D7 /* libgobject.framework in Frameworks */,
+				639ABE00176CD49B00F752D7 /* libintl.framework in Frameworks */,
+				639ABE02176CD49B00F752D7 /* libpurple.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		639ABD78176CD21300F752D7 = {
+			isa = PBXGroup;
+			children = (
+				639ABD8A176CD21300F752D7 /* AIGtalkSharedStatus */,
+				639ABD83176CD21300F752D7 /* Frameworks */,
+				639ABD82176CD21300F752D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		639ABD82176CD21300F752D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				639ABD81176CD21300F752D7 /* AIGtalkSharedStatus.AdiumLibpurplePlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		639ABD83176CD21300F752D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				639E1416176CE06700A9BE53 /* Foundation.framework */,
+				639ABD84176CD21300F752D7 /* Cocoa.framework */,
+				639ABD86176CD21300F752D7 /* Adium Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		639ABD86176CD21300F752D7 /* Adium Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				639ABE03176CD4B000F752D7 /* Adium.framework */,
+				639ABE0C176CD83600F752D7 /* AdiumLibpurple.framework */,
+				639ABE04176CD4B000F752D7 /* AIUtilities.framework */,
+				639ABDF4176CD45800F752D7 /* libglib.framework */,
+				639ABDF5176CD45800F752D7 /* libgobject.framework */,
+				639ABDF6176CD45800F752D7 /* libintl.framework */,
+				639ABDF8176CD45800F752D7 /* libpurple.framework */,
+			);
+			name = "Adium Frameworks";
+			sourceTree = "<group>";
+		};
+		639ABD8A176CD21300F752D7 /* AIGtalkSharedStatus */ = {
+			isa = PBXGroup;
+			children = (
+				632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */,
+				632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */,
+				632B7D34176D244400F4F28F /* CBPurpleAccount.h */,
+				632B7D35176D244400F4F28F /* ESPurpleJabberAccount.h */,
+				632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */,
+				639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */,
+				639ABE0A176CD60E00F752D7 /* gtalk-shared-status.h */,
+				639ABD8B176CD21300F752D7 /* Supporting Files */,
+			);
+			path = AIGtalkSharedStatus;
+			sourceTree = "<group>";
+		};
+		639ABD8B176CD21300F752D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				632B7D39176D244B00F4F28F /* AIGtalkSharedStatus-Info.plist */,
+				632B7D3A176D244B00F4F28F /* AIGtalkSharedStatus-Prefix.pch */,
+				632B7D3D176D245800F4F28F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		639ABD80176CD21300F752D7 /* AIGtalkSharedStatus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 639ABD93176CD21300F752D7 /* Build configuration list for PBXNativeTarget "AIGtalkSharedStatus" */;
+			buildPhases = (
+				639ABD7D176CD21300F752D7 /* Sources */,
+				639ABD7E176CD21300F752D7 /* Frameworks */,
+				639ABD7F176CD21300F752D7 /* Resources */,
+				639E1415176CDFF600A9BE53 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AIGtalkSharedStatus;
+			productName = AIGtalkSharedStatus;
+			productReference = 639ABD81176CD21300F752D7 /* AIGtalkSharedStatus.AdiumLibpurplePlugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		639ABD79176CD21300F752D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "David Ryskalczyk";
+			};
+			buildConfigurationList = 639ABD7C176CD21300F752D7 /* Build configuration list for PBXProject "AIGtalkSharedStatus" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 639ABD78176CD21300F752D7;
+			productRefGroup = 639ABD82176CD21300F752D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				639ABD80176CD21300F752D7 /* AIGtalkSharedStatus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		639ABD7F176CD21300F752D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632B7D3F176D245800F4F28F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		639E1415176CDFF600A9BE53 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exe=\"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\ninstall_name_tool -change @executable_path/../Frameworks/Adium.framework/Versions/A/Adium @executable_path/../Frameworks/Adium.framework/Versions/Current/Adium \"$exe\"\ninstall_name_tool -change @executable_path/../Frameworks/AdiumLibpurple.framework/Versions/A/AdiumLibpurple @executable_path/../Frameworks/AdiumLibpurple.framework/Versions/Current/AdiumLibpurple \"$exe\"\ninstall_name_tool -change @executable_path/../Frameworks/libintl.framework/Versions/0.18.2/libintl @executable_path/../Frameworks/libintl.framework/Versions/Current/libintl \"$exe\"\ninstall_name_tool -change @executable_path/../Frameworks/libgobject.framework/Versions/2.34.3/libgobject @executable_path/../Frameworks/libgobject.framework/Versions/Current/libgobject \"$exe\"\ninstall_name_tool -change @executable_path/../Frameworks/libpurple.framework/Versions/2.10.7rc8e809dffa1d/libpurple @executable_path/../Frameworks/libpurple.framework/Versions/Current/libpurple \"$exe\"\ninstall_name_tool -change @executable_path/../Frameworks/libglib.framework/Versions/2.34.3/libglib @executable_path/../Frameworks/libglib.framework/Versions/Current/libglib \"$exe\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		639ABD7D176CD21300F752D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				639ABE0B176CD60E00F752D7 /* gtalk-shared-status.c in Sources */,
+				632B7D37176D244400F4F28F /* AIGtalkSharedStatusPlugin.m in Sources */,
+				632B7D38176D244400F4F28F /* ESPurpleJabberAccount.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		632B7D3D176D245800F4F28F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				632B7D3E176D245800F4F28F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		639ABD91176CD21300F752D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../adium/Frameworks\"",
+					"\"$(SRCROOT)/../adium/build/Debug\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					GLIB_H,
+					PURPLE_STATIC_PRPL,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../adium/Frameworks/libpurple.framework/Headers\"",
+					"\"$(SRCROOT)/../adium/Frameworks/libglib.framework/Headers\"",
+					/usr/include/libxml2,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = AdiumLibpurplePlugin;
+			};
+			name = Debug;
+		};
+		639ABD92176CD21300F752D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../adium/Frameworks\"",
+					"\"$(SRCROOT)/../adium/build/Debug\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					GLIB_H,
+					PURPLE_STATIC_PRPL,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../adium/Frameworks/libpurple.framework/Headers\"",
+					"\"$(SRCROOT)/../adium/Frameworks/libglib.framework/Headers\"",
+					/usr/include/libxml2,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = AdiumLibpurplePlugin;
+			};
+			name = Release;
+		};
+		639ABD94176CD21300F752D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../adium/Frameworks\"",
+					"\"$(SRCROOT)/../adium/build/Debug\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch";
+				INFOPLIST_FILE = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = AIGtalkSharedStatus;
+			};
+			name = Debug;
+		};
+		639ABD95176CD21300F752D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../adium/Frameworks\"",
+					"\"$(SRCROOT)/../adium/build/Debug\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch";
+				INFOPLIST_FILE = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = AIGtalkSharedStatus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		639ABD7C176CD21300F752D7 /* Build configuration list for PBXProject "AIGtalkSharedStatus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				639ABD91176CD21300F752D7 /* Debug */,
+				639ABD92176CD21300F752D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		639ABD93176CD21300F752D7 /* Build configuration list for PBXNativeTarget "AIGtalkSharedStatus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				639ABD94176CD21300F752D7 /* Debug */,
+				639ABD95176CD21300F752D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 639ABD79176CD21300F752D7 /* Project object */;
+}
