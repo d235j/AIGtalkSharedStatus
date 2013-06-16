@@ -65,28 +65,33 @@ static void
 account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatus *new, gpointer data)
 {
     AIStatusType aIstatusType;
-    CBPurpleAccount	*aIaccount = accountLookup(account);
-    if(strcmp([aIaccount protocolPlugin], "prpl-jabber") == 0) {
-        PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
-        
-        switch (status) {
-            case PURPLE_STATUS_AWAY:
-            case PURPLE_STATUS_EXTENDED_AWAY:
-                aIstatusType = AIAwayStatusType;
-                break;
-            case PURPLE_STATUS_INVISIBLE:
-                aIstatusType = AIInvisibleStatusType;
-                break;
-            case PURPLE_STATUS_OFFLINE:
-                aIstatusType = AIOfflineStatusType;
-                break;
-            case PURPLE_STATUS_AVAILABLE:
-            case PURPLE_STATUS_TUNE:
-            default:
-                aIstatusType = AIAvailableStatusType;
-                break;
+    CBPurpleAccount	*aIaccountTmp = accountLookup(account);
+    if(strcmp([aIaccountTmp protocolPlugin], "prpl-jabber") == 0) {
+        ESPurpleJabberAccount *aIaccount = (ESPurpleJabberAccount *) aIaccountTmp;
+        if([[aIaccount serverSuffix] isEqualToString:@"@gmail.com"] ||
+           [[aIaccount serverSuffix] isEqualToString:@"@talk.google.com"]) {
+            PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
+            switch (status) {
+                case PURPLE_STATUS_AWAY:
+                case PURPLE_STATUS_EXTENDED_AWAY:
+                    aIstatusType = AIAwayStatusType;
+                    break;
+                case PURPLE_STATUS_INVISIBLE:
+                    aIstatusType = AIInvisibleStatusType;
+                    break;
+                case PURPLE_STATUS_OFFLINE:
+                    aIstatusType = AIOfflineStatusType;
+                    break;
+                case PURPLE_STATUS_AVAILABLE:
+                case PURPLE_STATUS_TUNE:
+                default:
+                    aIstatusType = AIAvailableStatusType;
+                    break;
+            }
+            if([aIaccount statusType] != aIstatusType) {
+                AIStatus *statusState = [AIStatus statusOfType:aIstatusType];
+                [aIaccount setStatusState:statusState];
+            }
         }
-        
-        [aIaccount setStatusState:[AIStatus statusOfType:aIstatusType]];
     }
 }

@@ -25,5 +25,3 @@
 }
 
 @end
-
-void setStatus();
