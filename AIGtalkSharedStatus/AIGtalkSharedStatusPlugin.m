@@ -72,6 +72,7 @@ account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatu
             switch (status) {
                 case PURPLE_STATUS_AWAY:
                 case PURPLE_STATUS_EXTENDED_AWAY:
+                case PURPLE_STATUS_UNAVAILABLE:
                     currentStatus = [adium.statusController awayStatus];
                     break;
                 case PURPLE_STATUS_INVISIBLE:

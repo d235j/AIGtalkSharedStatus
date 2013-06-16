@@ -408,6 +408,10 @@ get_show(xmlnode *query)
 static char *
 get_status(const xmlnode *query)
 {
+    xmlnode *status_list = xmlnode_get_child(query, "status-list");
+    xmlnode *status = xmlnode_get_next_twin(xmlnode_get_child(status_list, "status"));
+    char *data = xmlnode_get_data(status);
+    return data;
 	if (xmlnode_get_child(query, "status"))
 		return xmlnode_get_data(
 					xmlnode_get_child(query, "status"));
@@ -432,6 +436,7 @@ is_shared_status_invisible(xmlnode *shared_status)
 }
 
 
+
 static gboolean
 is_same_state(PurpleStatus *status, xmlnode *shared_status)
 {
@@ -441,7 +446,11 @@ is_same_state(PurpleStatus *status, xmlnode *shared_status)
 	
 	if (!shared_status)
 		return FALSE;
-		
+	
+    // check if status changed (available -> dnd or vice versa)
+    // for now just log
+    purple_debug_info(PLUGIN_STATIC_NAME, "shared_status: %p, data %s, new_status: %s", shared_status, xmlnode_get_data(shared_status), get_status(shared_status));
+	
 	// invisible status is a mess!!!
 	if (primitive == PURPLE_STATUS_INVISIBLE && is_shared_status_invisible(shared_status))
 		return TRUE;
@@ -451,7 +460,7 @@ is_same_state(PurpleStatus *status, xmlnode *shared_status)
 	
 	if (g_strcmp0(purple_primitive_get_id_from_type(primitive), map_status(FROM_GOOGLE_TO_PURPLE, get_show(shared_status))))
 			return FALSE;
-	
+	purple_debug_info(PLUGIN_STATIC_NAME, "purple_status_attr_string: %s", purple_status_get_attr_string(status, "message"));
 	if (g_strcmp0(
 			purple_status_get_attr_string(status, "message"),
 			get_status(shared_status)))
