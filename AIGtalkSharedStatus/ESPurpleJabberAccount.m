@@ -7,8 +7,7 @@
 //
 
 #import <Adium/AIStatus.h>
-#import "ESPurpleJabberAccount.h"
-
+#import <AdiumLibpurple/ESPurpleJabberAccount.h>
 
 @implementation ESPurpleJabberAccount (XMPPInvisible)
 
@@ -26,3 +25,5 @@
 }
 
 @end
+
+void setStatus();

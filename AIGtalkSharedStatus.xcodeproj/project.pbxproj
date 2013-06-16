@@ -25,8 +25,6 @@
 /* Begin PBXFileReference section */
 		632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIGtalkSharedStatusPlugin.h; path = AIGtalkSharedStatus/AIGtalkSharedStatusPlugin.h; sourceTree = SOURCE_ROOT; };
 		632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIGtalkSharedStatusPlugin.m; path = AIGtalkSharedStatus/AIGtalkSharedStatusPlugin.m; sourceTree = SOURCE_ROOT; };
-		632B7D34176D244400F4F28F /* CBPurpleAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBPurpleAccount.h; path = AIGtalkSharedStatus/CBPurpleAccount.h; sourceTree = SOURCE_ROOT; };
-		632B7D35176D244400F4F28F /* ESPurpleJabberAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESPurpleJabberAccount.h; path = AIGtalkSharedStatus/ESPurpleJabberAccount.h; sourceTree = SOURCE_ROOT; };
 		632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESPurpleJabberAccount.m; path = AIGtalkSharedStatus/ESPurpleJabberAccount.m; sourceTree = SOURCE_ROOT; };
 		632B7D39176D244B00F4F28F /* AIGtalkSharedStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AIGtalkSharedStatus-Info.plist"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist"; sourceTree = SOURCE_ROOT; };
 		632B7D3A176D244B00F4F28F /* AIGtalkSharedStatus-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AIGtalkSharedStatus-Prefix.pch"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -111,8 +109,6 @@
 			children = (
 				632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */,
 				632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */,
-				632B7D34176D244400F4F28F /* CBPurpleAccount.h */,
-				632B7D35176D244400F4F28F /* ESPurpleJabberAccount.h */,
 				632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */,
 				639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */,
 				639ABE0A176CD60E00F752D7 /* gtalk-shared-status.h */,

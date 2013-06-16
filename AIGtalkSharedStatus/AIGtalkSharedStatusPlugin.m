@@ -7,6 +7,7 @@
 //
 
 #import "AIGtalkSharedStatusPlugin.h"
+#import <AdiumLibpurple/SLPurpleCocoaAdapter.h>
 
 #define KEY_JABBER_PRIORITY_AWAY		@"Jabber:Priority when Away"
 
@@ -23,7 +24,13 @@ extern void purple_init_gtalk_shared_status_plugin();
         Method newMethod = class_getInstanceMethod([ESPurpleJabberAccount class],
                                                    @selector(purpleStatusIDForStatusOverride:arguments:));
         method_exchangeImplementations(originalMethod, newMethod);
-}
+        
+        purple_signal_connect(purple_accounts_get_handle(),
+                              "account-status-changed",
+                              adium_purple_get_handle(),
+                              PURPLE_CALLBACK(account_status_changed_cb),
+                              NULL);
+    }
 }
 
 - (void) loadLibpurplePlugin
@@ -53,3 +60,33 @@ extern void purple_init_gtalk_shared_status_plugin();
 }
 
 @end
+
+static void
+account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatus *new, gpointer data)
+{
+    AIStatusType aIstatusType;
+    CBPurpleAccount	*aIaccount = accountLookup(account);
+    if(strcmp([aIaccount protocolPlugin], "prpl-jabber") == 0) {
+        PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
+        
+        switch (status) {
+            case PURPLE_STATUS_AWAY:
+            case PURPLE_STATUS_EXTENDED_AWAY:
+                aIstatusType = AIAwayStatusType;
+                break;
+            case PURPLE_STATUS_INVISIBLE:
+                aIstatusType = AIInvisibleStatusType;
+                break;
+            case PURPLE_STATUS_OFFLINE:
+                aIstatusType = AIOfflineStatusType;
+                break;
+            case PURPLE_STATUS_AVAILABLE:
+            case PURPLE_STATUS_TUNE:
+            default:
+                aIstatusType = AIAvailableStatusType;
+                break;
+        }
+        
+        [aIaccount setStatusState:[AIStatus statusOfType:aIstatusType]];
+    }
+}
