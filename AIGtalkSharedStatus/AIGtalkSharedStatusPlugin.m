@@ -46,7 +46,7 @@ extern void purple_init_gtalk_shared_status_plugin();
 
 - (NSString *) pluginVersion
 {
-    return @"0.1";
+    return @"ADIUM_PLUGIN_VERSION";
 }
 
 - (NSString *) pluginDescription

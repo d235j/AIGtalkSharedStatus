@@ -313,7 +313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../adium/Frameworks\"",
@@ -321,6 +321,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					GLIB_H,
+					PURPLE_STATIC_PRPL,
+					"ADIUM_PLUGIN_VERSION=$CURRENT_PROJECT_VERSION",
+				);
 				INFOPLIST_FILE = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_NAME = AIGtalkSharedStatus;
@@ -331,7 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../adium/Frameworks\"",
@@ -339,6 +344,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					GLIB_H,
+					PURPLE_STATIC_PRPL,
+					"ADIUM_PLUGIN_VERSION=$CURRENT_PROJECT_VERSION",
+				);
 				INFOPLIST_FILE = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_NAME = AIGtalkSharedStatus;

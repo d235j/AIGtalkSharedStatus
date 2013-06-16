@@ -23,9 +23,9 @@
 	<key>CFBundleSignature</key>
 	<string>AdiM</string>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>${CURRENT_PROJECT_VERSION}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 David Ryskalczyk. All rights reserved.</string>
+	<string>Copyright © 2013 David Ryskalczyk</string>
 	<key>NSPrincipalClass</key>
 	<string>AIGtalkSharedStatusPlugin</string>
 </dict>
