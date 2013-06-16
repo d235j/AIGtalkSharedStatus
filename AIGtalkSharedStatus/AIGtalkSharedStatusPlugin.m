@@ -7,8 +7,6 @@
 //
 
 #import "AIGtalkSharedStatusPlugin.h"
-#import <AdiumLibpurple/SLPurpleCocoaAdapter.h>
-#import <Adium/AIStatusControllerProtocol.h>
 
 #define KEY_JABBER_PRIORITY_AWAY		@"Jabber:Priority when Away"
 
@@ -67,33 +65,30 @@ account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatu
 {
     @autoreleasepool {
         AIStatus *currentStatus;
-        CBPurpleAccount	*aIaccountTmp = accountLookup(account);
-        if(strcmp([aIaccountTmp protocolPlugin], "prpl-jabber") == 0) {
-            ESPurpleJabberAccount *aIaccount = (ESPurpleJabberAccount *) aIaccountTmp;
-            if([[aIaccount serverSuffix] isEqualToString:@"@gmail.com"] ||
-               [[aIaccount serverSuffix] isEqualToString:@"@talk.google.com"]) {
-                PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
-                switch (status) {
-                    case PURPLE_STATUS_AWAY:
-                    case PURPLE_STATUS_EXTENDED_AWAY:
-                        currentStatus = [adium.statusController awayStatus];
-                        break;
-                    case PURPLE_STATUS_INVISIBLE:
-                        currentStatus = [adium.statusController invisibleStatus];
-                        break;
-                    case PURPLE_STATUS_OFFLINE:
-                        currentStatus = [adium.statusController offlineStatus];
-                        break;
-                    case PURPLE_STATUS_AVAILABLE:
-                    case PURPLE_STATUS_TUNE:
-                    default:
-                        currentStatus = [adium.statusController availableStatus];
-                        break;
-                }
-                
-                if([aIaccount statusType] != [currentStatus statusType]) {
-                    [aIaccount setStatusState:currentStatus];
-                }
+        CBPurpleAccount	*aIaccount = accountLookup(account);
+        if([aIaccount isKindOfClass:[AIPurpleGTalkAccount class]]) {
+            
+            PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
+            switch (status) {
+                case PURPLE_STATUS_AWAY:
+                case PURPLE_STATUS_EXTENDED_AWAY:
+                    currentStatus = [adium.statusController awayStatus];
+                    break;
+                case PURPLE_STATUS_INVISIBLE:
+                    currentStatus = [adium.statusController invisibleStatus];
+                    break;
+                case PURPLE_STATUS_OFFLINE:
+                    currentStatus = [adium.statusController offlineStatus];
+                    break;
+                case PURPLE_STATUS_AVAILABLE:
+                case PURPLE_STATUS_TUNE:
+                default:
+                    currentStatus = [adium.statusController availableStatus];
+                    break;
+            }
+            
+            if([aIaccount statusType] != [currentStatus statusType]) {
+                [aIaccount setStatusState:currentStatus];
             }
         }
     }

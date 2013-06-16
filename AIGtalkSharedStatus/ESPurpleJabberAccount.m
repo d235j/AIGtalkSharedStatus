@@ -8,6 +8,7 @@
 
 #import <Adium/AIStatus.h>
 #import <AdiumLibpurple/ESPurpleJabberAccount.h>
+#import <AdiumLibpurple/AIPurpleGTalkAccount.h>
 
 @implementation ESPurpleJabberAccount (XMPPInvisible)
 
@@ -15,9 +16,7 @@
                                      arguments:(NSMutableDictionary *)arguments
 {
     if(statusState.statusType == AIInvisibleStatusType &&
-       ([[self serverSuffix] isEqualToString:@"@gmail.com"] ||
-        [[self serverSuffix] isEqualToString:@"@talk.google.com"])
-       ) {
+       [self isKindOfClass:[AIPurpleGTalkAccount class]]) {
         return "invisible";
     } else {
         return [self purpleStatusIDForStatusOverride:statusState arguments:arguments];
