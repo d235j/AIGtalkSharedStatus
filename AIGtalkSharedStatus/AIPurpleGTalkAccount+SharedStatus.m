@@ -23,7 +23,7 @@
     NSNumber		*priority = nil;
     
     if (!statusMessageString) statusMessageString = @"";
-    
+        
     switch (statusState.statusType) {
         case(AIInvisibleStatusType):
             statusID = "invisible";
@@ -43,6 +43,11 @@
             break; // allow main code to handle these cases (Online and Offline)
     }
     
+    // forced-idle state
+    if([statusState shouldForceInitialIdleTime] || ([self valueForProperty:@"idleSince"] != nil)) {
+        statusID = jabber_buddy_state_get_status_id(JABBER_BUDDY_STATE_AWAY);
+    }
+    
     if(statusID == NULL) {
         // return default output in case this has failed to return
         return [super purpleStatusIDForStatus:statusState arguments:arguments];
@@ -59,4 +64,15 @@
         return statusID;
     }
 }
+
+// handle setting idle
+
+- (void)setAccountIdleSinceTo:(NSDate *)idleSince
+{
+    [super setAccountIdleSinceTo:idleSince];
+    // we need to update the status when idle state changes.
+    [self setStatusState:[self statusState]];
+}
+
+
 @end
