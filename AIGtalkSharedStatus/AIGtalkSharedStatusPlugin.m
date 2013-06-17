@@ -16,11 +16,6 @@ extern void purple_init_gtalk_shared_status_plugin();
 
 - (void) installLibpurplePlugin
 {
-    purple_signal_connect(purple_accounts_get_handle(),
-                          "account-status-changed",
-                          adium_purple_get_handle(),
-                          PURPLE_CALLBACK(account_status_changed_cb),
-                          NULL);
 }
 
 - (void) loadLibpurplePlugin
@@ -50,42 +45,3 @@ extern void purple_init_gtalk_shared_status_plugin();
 }
 
 @end
-
-static void
-account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatus *new, gpointer data)
-{
-    @autoreleasepool {
-        AIStatus *currentStatus;
-        CBPurpleAccount	*aIaccount = accountLookup(account);
-        if(![aIaccount isKindOfClass:[AIPurpleGTalkAccount class]]) {
-            return;
-        }
-        
-        PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
-        switch (status) {
-            case PURPLE_STATUS_AWAY:
-            case PURPLE_STATUS_EXTENDED_AWAY:
-            case PURPLE_STATUS_UNAVAILABLE:
-                currentStatus = [adium.statusController awayStatus];
-                break;
-            case PURPLE_STATUS_INVISIBLE:
-                currentStatus = [adium.statusController invisibleStatus];
-                break;
-            case PURPLE_STATUS_OFFLINE:
-                currentStatus = [adium.statusController offlineStatus];
-                break;
-            case PURPLE_STATUS_AVAILABLE:
-            case PURPLE_STATUS_TUNE:
-            default:
-                currentStatus = [adium.statusController availableStatus];
-                break;
-        }
-        
-        const char *statusCString = purple_status_get_attr_string(new, "message");
-        NSLog(@"Message: %s", statusCString);
-        
-        if([aIaccount statusType] != [currentStatus statusType] || [aIaccount statusMessageString] != [currentStatus statusMessageString]) {
-            [aIaccount setStatusState:currentStatus];
-        }
-    }
-}

@@ -21,7 +21,16 @@
  *
  */
 
-#include "gtalk-shared-status.h"
+#import <Adium/AIStatus.h>
+
+#import <Adium/AISharedAdium.h>
+
+#import <Adium/AIStatusControllerProtocol.h>
+
+#import <AdiumLibpurple/AIPurpleGTalkAccount.h>
+#import <AdiumLibpurple/SLPurpleCocoaAdapter.h>
+
+#import "gtalk-shared-status.h"
 
 // globals
 static PurplePlugin *this_plugin = NULL;
@@ -41,6 +50,7 @@ static void 					add_status_invisible(PurpleAccount *account);
 static const char *				map_status(gboolean mode, const char *status_id);
 static xmlnode *				create_shared_status_iq(GTalkSharedStatusEl *el, PurpleStatus *old, PurpleStatus *new);
 static char *					get_show(const xmlnode *query);
+static gboolean                 get_has_status(const xmlnode *query);
 static char *					get_status(const xmlnode *query);
 static gboolean					is_shared_status_invisible(xmlnode *shared_status);
 static gboolean					is_same_state(PurpleStatus *status, xmlnode *shared_status);
@@ -56,6 +66,7 @@ static gboolean					plugin_load (PurplePlugin *plugin);
 static gboolean					plugin_unload (PurplePlugin *plugin);
 static PurplePluginPrefFrame *	get_plugin_pref_frame(PurplePlugin *plugin);
 static void						init_plugin (PurplePlugin * plugin);
+static void                     set_account_status(PurpleAccount *account, const char *statusID, const char *statusString);
 
 
 static gint
@@ -399,6 +410,11 @@ get_show(const xmlnode *query)
 		return NULL;
 }
 
+static gboolean
+get_has_status(const xmlnode *query)
+{
+    return (xmlnode_get_child(query, "status") != NULL);
+}
 
 static char *
 get_status(const xmlnode *query)
@@ -625,6 +641,10 @@ sync_with_shared_status(PurpleAccount *account, xmlnode *iq)
 	xmlnode *query = xmlnode_get_child(iq, "query");
 	
 	purple_debug_info(PLUGIN_STATIC_NAME, "sync_with_shared_status\n");
+    // query does not contain the status! This function won't work properly in this case.
+    if(!get_has_status(query)) {
+        return;
+    }
 
 	// clean unwanted attributes
 	strip_prefixes(query);
@@ -641,7 +661,8 @@ sync_with_shared_status(PurpleAccount *account, xmlnode *iq)
 	
 	if (is_shared_status_invisible(query))
 	{
-		purple_account_set_status(account, "invisible", TRUE, NULL);
+		//purple_account_set_status(account, "invisible", TRUE, NULL);
+        set_account_status(account, "invisible", NULL);
 		return;
 	}
 
@@ -662,10 +683,7 @@ sync_with_shared_status(PurpleAccount *account, xmlnode *iq)
 		purple_savedstatus_activate(saved_status);
 		ssl_set_changing_saved_status(account, FALSE);
 	} else {
-		if (get_status(query))
-			purple_account_set_status(account, map_status(FROM_GOOGLE_TO_PURPLE, get_show(query)), TRUE, "message", get_status(query), NULL);
-		else
-			purple_account_set_status(account, map_status(FROM_GOOGLE_TO_PURPLE, get_show(query)), TRUE, NULL);
+        set_account_status(account, map_status(FROM_GOOGLE_TO_PURPLE, get_show(query)), get_status(query));
 	}
 }
 
@@ -951,3 +969,65 @@ init_plugin (PurplePlugin * plugin)
 }
 
 PURPLE_INIT_PLUGIN(gtalk_shared_status, init_plugin, info);
+
+
+
+// 			purple_account_set_status(account, map_status(FROM_GOOGLE_TO_PURPLE, get_show(query)), TRUE, "message", get_status(query), NULL);
+
+static void
+set_account_status(PurpleAccount *account, const char *statusID, const char *statusString)
+{
+    @autoreleasepool {
+        AIStatus *currentStatus;
+        CBPurpleAccount	*aIaccount = accountLookup(account);
+        if(![aIaccount isKindOfClass:[AIPurpleGTalkAccount class]]) {
+            return;
+        }
+
+        PurpleStatusPrimitive status = purple_primitive_get_type_from_id(statusID);
+
+        switch (status) {
+            case PURPLE_STATUS_AWAY:
+            case PURPLE_STATUS_EXTENDED_AWAY:
+            case PURPLE_STATUS_UNAVAILABLE:
+                currentStatus = [adium.statusController awayStatus];
+                break;
+            case PURPLE_STATUS_INVISIBLE:
+                currentStatus = [adium.statusController invisibleStatus];
+                break;
+            case PURPLE_STATUS_OFFLINE:
+                currentStatus = [adium.statusController offlineStatus];
+                break;
+            case PURPLE_STATUS_AVAILABLE:
+            case PURPLE_STATUS_TUNE:
+            default:
+                currentStatus = [adium.statusController availableStatus];
+                break;
+        }
+
+        if(statusString != NULL) {
+            AIStatus *newStatus = NULL;
+            NSString *statusNSString = [NSString stringWithUTF8String:statusString];
+            for(AIStatus *statusItem in [adium.statusController flatStatusSet]) {
+                if ([statusItem statusType] == [currentStatus statusType] &&
+                    [[statusItem statusMessageString] isEqualToString:statusNSString]) {
+                    newStatus = statusItem;
+                    break;
+                }
+            }
+            if(newStatus == NULL) {
+                newStatus = [AIStatus statusOfType:[currentStatus statusType]];
+                [newStatus setStatusMessageString:statusNSString];
+                [newStatus setTitle:statusNSString];
+                [adium.statusController addStatusState:newStatus];
+            }
+            currentStatus = newStatus;
+        }
+
+        NSLog(@"Message: %s", statusString);
+
+        if([aIaccount statusType] != [currentStatus statusType] || [aIaccount statusMessageString] != [currentStatus statusMessageString]) {
+                        [aIaccount setStatusState:currentStatus];
+        }
+    }
+}

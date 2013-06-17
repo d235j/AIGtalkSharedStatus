@@ -17,7 +17,7 @@
 		639ABE02176CD49B00F752D7 /* libpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABDF8176CD45800F752D7 /* libpurple.framework */; };
 		639ABE07176CD4CE00F752D7 /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABE03176CD4B000F752D7 /* Adium.framework */; };
 		639ABE08176CD4CE00F752D7 /* AIUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABE04176CD4B000F752D7 /* AIUtilities.framework */; };
-		639ABE0B176CD60E00F752D7 /* gtalk-shared-status.c in Sources */ = {isa = PBXBuildFile; fileRef = 639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */; };
+		639ABE0B176CD60E00F752D7 /* gtalk-shared-status.m in Sources */ = {isa = PBXBuildFile; fileRef = 639ABE09176CD60E00F752D7 /* gtalk-shared-status.m */; };
 		639ABE0E176CD83E00F752D7 /* AdiumLibpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABE0C176CD83600F752D7 /* AdiumLibpurple.framework */; };
 		639E1418176CE06D00A9BE53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639E1416176CE06700A9BE53 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -37,7 +37,7 @@
 		639ABDF8176CD45800F752D7 /* libpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpurple.framework; path = ../adium/Frameworks/libpurple.framework; sourceTree = "<group>"; };
 		639ABE03176CD4B000F752D7 /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Adium.framework; path = ../adium/build/Debug/Adium.framework; sourceTree = "<group>"; };
 		639ABE04176CD4B000F752D7 /* AIUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AIUtilities.framework; path = ../adium/build/Debug/AIUtilities.framework; sourceTree = "<group>"; };
-		639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "gtalk-shared-status.c"; path = "gtalk-shared-status-0.2.5/gtalk-shared-status.c"; sourceTree = SOURCE_ROOT; };
+		639ABE09176CD60E00F752D7 /* gtalk-shared-status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "gtalk-shared-status.m"; path = "gtalk-shared-status-0.2.5/gtalk-shared-status.m"; sourceTree = SOURCE_ROOT; };
 		639ABE0A176CD60E00F752D7 /* gtalk-shared-status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtalk-shared-status.h"; path = "gtalk-shared-status-0.2.5/gtalk-shared-status.h"; sourceTree = SOURCE_ROOT; };
 		639ABE0C176CD83600F752D7 /* AdiumLibpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdiumLibpurple.framework; path = ../adium/build/Debug/AdiumLibpurple.framework; sourceTree = "<group>"; };
 		639E1416176CE06700A9BE53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,7 +110,7 @@
 				632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */,
 				632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */,
 				632B7D36176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m */,
-				639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */,
+				639ABE09176CD60E00F752D7 /* gtalk-shared-status.m */,
 				639ABE0A176CD60E00F752D7 /* gtalk-shared-status.h */,
 				639ABD8B176CD21300F752D7 /* Supporting Files */,
 			);
@@ -206,7 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				639ABE0B176CD60E00F752D7 /* gtalk-shared-status.c in Sources */,
+				639ABE0B176CD60E00F752D7 /* gtalk-shared-status.m in Sources */,
 				632B7D37176D244400F4F28F /* AIGtalkSharedStatusPlugin.m in Sources */,
 				632B7D38176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m in Sources */,
 			);
