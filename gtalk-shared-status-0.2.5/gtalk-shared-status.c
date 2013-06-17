@@ -226,17 +226,17 @@ map_status(gboolean mode, const char *status_id)
 	if (mode == FROM_GOOGLE_TO_PURPLE)
 	{
 		if (!g_strcmp0("default", status_id))
-			return "available";
+            return 	purple_primitive_get_id_from_type(PURPLE_STATUS_AVAILABLE);
 			
 		if (!g_strcmp0("dnd", status_id))
-			return "unavailable";
+            return purple_primitive_get_id_from_type(PURPLE_STATUS_UNAVAILABLE);
 		
 		return NULL;
 	} else {
-		if (!g_strcmp0("available", status_id))
+		if (!g_strcmp0("available", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_AVAILABLE), status_id))
 			return "default";
 		
-		if (!g_strcmp0("unavailable", status_id))
+		if (!g_strcmp0("unavailable", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_UNAVAILABLE), status_id))
 			return "dnd";
 			
 		return NULL;
@@ -460,7 +460,6 @@ is_same_state(PurpleStatus *status, xmlnode *shared_status)
 	
 	if (g_strcmp0(purple_primitive_get_id_from_type(primitive), map_status(FROM_GOOGLE_TO_PURPLE, get_show(shared_status))))
 			return FALSE;
-	purple_debug_info(PLUGIN_STATIC_NAME, "purple_status_attr_string: %s", purple_status_get_attr_string(status, "message"));
 	if (g_strcmp0(
 			purple_status_get_attr_string(status, "message"),
 			get_status(shared_status)))
