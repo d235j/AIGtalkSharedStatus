@@ -229,7 +229,7 @@ map_status(gboolean mode, const char *status_id)
             return 	purple_primitive_get_id_from_type(PURPLE_STATUS_AVAILABLE);
 			
 		if (!g_strcmp0("dnd", status_id))
-            return purple_primitive_get_id_from_type(PURPLE_STATUS_UNAVAILABLE);
+            return purple_primitive_get_id_from_type(PURPLE_STATUS_AWAY);
 		
 		return NULL;
 	} else {
@@ -238,6 +238,10 @@ map_status(gboolean mode, const char *status_id)
 		
 		if (!g_strcmp0("unavailable", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_UNAVAILABLE), status_id))
 			return "dnd";
+        
+        if (!g_strcmp0("away", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_AWAY), status_id))
+			return "dnd";
+
 			
 		return NULL;
 	}	
