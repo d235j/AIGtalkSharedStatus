@@ -57,31 +57,35 @@ account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatu
     @autoreleasepool {
         AIStatus *currentStatus;
         CBPurpleAccount	*aIaccount = accountLookup(account);
-        if([aIaccount isKindOfClass:[AIPurpleGTalkAccount class]]) {
-            
-            PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
-            switch (status) {
-                case PURPLE_STATUS_AWAY:
-                case PURPLE_STATUS_EXTENDED_AWAY:
-                case PURPLE_STATUS_UNAVAILABLE:
-                    currentStatus = [adium.statusController awayStatus];
-                    break;
-                case PURPLE_STATUS_INVISIBLE:
-                    currentStatus = [adium.statusController invisibleStatus];
-                    break;
-                case PURPLE_STATUS_OFFLINE:
-                    currentStatus = [adium.statusController offlineStatus];
-                    break;
-                case PURPLE_STATUS_AVAILABLE:
-                case PURPLE_STATUS_TUNE:
-                default:
-                    currentStatus = [adium.statusController availableStatus];
-                    break;
-            }
-            
-            if([aIaccount statusType] != [currentStatus statusType]) {
-                [aIaccount setStatusState:currentStatus];
-            }
+        if(![aIaccount isKindOfClass:[AIPurpleGTalkAccount class]]) {
+            return;
+        }
+        
+        PurpleStatusPrimitive status = purple_status_type_get_primitive(purple_status_get_type(new));
+        switch (status) {
+            case PURPLE_STATUS_AWAY:
+            case PURPLE_STATUS_EXTENDED_AWAY:
+            case PURPLE_STATUS_UNAVAILABLE:
+                currentStatus = [adium.statusController awayStatus];
+                break;
+            case PURPLE_STATUS_INVISIBLE:
+                currentStatus = [adium.statusController invisibleStatus];
+                break;
+            case PURPLE_STATUS_OFFLINE:
+                currentStatus = [adium.statusController offlineStatus];
+                break;
+            case PURPLE_STATUS_AVAILABLE:
+            case PURPLE_STATUS_TUNE:
+            default:
+                currentStatus = [adium.statusController availableStatus];
+                break;
+        }
+        
+        const char *statusCString = purple_status_get_attr_string(new, "message");
+        NSLog(@"Message: %s", statusCString);
+        
+        if([aIaccount statusType] != [currentStatus statusType] || [aIaccount statusMessageString] != [currentStatus statusMessageString]) {
+            [aIaccount setStatusState:currentStatus];
         }
     }
 }

@@ -40,7 +40,7 @@ static char *					make_account_pref(PurpleAccount *account);
 static void 					add_status_invisible(PurpleAccount *account);
 static const char *				map_status(gboolean mode, const char *status_id);
 static xmlnode *				create_shared_status_iq(GTalkSharedStatusEl *el, PurpleStatus *old, PurpleStatus *new);
-static char *					get_show(xmlnode *query);
+static char *					get_show(const xmlnode *query);
 static char *					get_status(const xmlnode *query);
 static gboolean					is_shared_status_invisible(xmlnode *shared_status);
 static gboolean					is_same_state(PurpleStatus *status, xmlnode *shared_status);
@@ -186,10 +186,8 @@ add_status_invisible(PurpleAccount *account)
     // if status 'INVISIBLE' is already present there's no need to add it    
 	for (; types; types = types->next)
 	{
-        purple_debug_info(PLUGIN_STATIC_NAME, "status: %s", purple_status_type_get_name(types->data));
-		if (purple_status_type_get_primitive(types->data) == PURPLE_STATUS_INVISIBLE) {
+		if (purple_status_type_get_primitive(types->data) == PURPLE_STATUS_INVISIBLE)
 			return;
-        }
 	}
 	
 	types = purple_account_get_status_types(account);
@@ -209,12 +207,6 @@ add_status_invisible(PurpleAccount *account)
 			PLUGIN_NAME,
 			"WARNING!!!",
 			"Gtalk Shared Status plugin requires restart! Please exit and restart to get it working");
-    for (; types; types = types->next)
-	{
-        purple_debug_info(PLUGIN_STATIC_NAME, "status: %s", purple_status_type_get_name(types->data));
-	}
-
-    
 }
 
 
@@ -236,14 +228,13 @@ map_status(gboolean mode, const char *status_id)
 		if (!g_strcmp0("available", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_AVAILABLE), status_id))
 			return "default";
 		
-		if (!g_strcmp0("unavailable", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_UNAVAILABLE), status_id))
-			return "dnd";
-        
-        if (!g_strcmp0("away", status_id) || !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_AWAY), status_id))
+		if (!g_strcmp0("unavailable", status_id) ||
+            !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_UNAVAILABLE), status_id) ||
+            !g_strcmp0("away", status_id) ||
+            !g_strcmp0(purple_primitive_get_id_from_type(PURPLE_STATUS_AWAY), status_id))
 			return "dnd";
 
-			
-		return NULL;
+        return NULL;
 	}	
 }
 
@@ -399,7 +390,7 @@ create_shared_status_iq(
 
 
 static char *
-get_show(xmlnode *query)
+get_show(const xmlnode *query)
 {
 	if (xmlnode_get_child(query, "show")) 
 		return xmlnode_get_data(
@@ -412,33 +403,47 @@ get_show(xmlnode *query)
 static char *
 get_status(const xmlnode *query)
 {
-    xmlnode *status_list = xmlnode_get_child(query, "status-list");
-    xmlnode *status = xmlnode_get_next_twin(xmlnode_get_child(status_list, "status"));
-    char *data = xmlnode_get_data(status);
-    return data;
 	if (xmlnode_get_child(query, "status"))
 		return xmlnode_get_data(
 					xmlnode_get_child(query, "status"));
 	else
 		return NULL;
+
+    /*
+    const char *show = map_status(FROM_GOOGLE_TO_PURPLE, get_show(query));
+    xmlnode *status_list = xmlnode_get_child(query, "status-list");
+    xmlnode *status = xmlnode_get_child(status_list, "status");;
+    
+    do {
+        if(g_strcmp0(xmlnode_get_attrib(status, "show"), show) == 0) {
+            break;
+        }
+        status = xmlnode_get_next_twin(status);
+    } while(status != NULL);
+    if(status != NULL) {
+        return xmlnode_get_data(status);
+    } else {
+        return NULL;
+    }
+     */
 }
 
 
 static gboolean
 is_shared_status_invisible(xmlnode *shared_status)
 {
-    gboolean ret = FALSE;
+	purple_debug_info(PLUGIN_STATIC_NAME, "is_shared_status_invisible\n");
+
 	if (xmlnode_get_child(shared_status, "invisible") 
 		&& !g_strcmp0(
 				xmlnode_get_attrib(
 					xmlnode_get_child(shared_status, "invisible"),
 					"value"), 
 				"true"))
-		ret = TRUE;
-    purple_debug_info(PLUGIN_STATIC_NAME, "is_shared_status_invisible, %d\n", ret);
-    return ret;
+		return TRUE;
+	else
+		return FALSE;
 }
-
 
 
 static gboolean
@@ -450,11 +455,7 @@ is_same_state(PurpleStatus *status, xmlnode *shared_status)
 	
 	if (!shared_status)
 		return FALSE;
-	
-    // check if status changed (available -> dnd or vice versa)
-    // for now just log
-    purple_debug_info(PLUGIN_STATIC_NAME, "shared_status: %p, data %s, new_status: %s", shared_status, xmlnode_get_data(shared_status), get_status(shared_status));
-	
+
 	// invisible status is a mess!!!
 	if (primitive == PURPLE_STATUS_INVISIBLE && is_shared_status_invisible(shared_status))
 		return TRUE;
@@ -464,6 +465,7 @@ is_same_state(PurpleStatus *status, xmlnode *shared_status)
 	
 	if (g_strcmp0(purple_primitive_get_id_from_type(primitive), map_status(FROM_GOOGLE_TO_PURPLE, get_show(shared_status))))
 			return FALSE;
+
 	if (g_strcmp0(
 			purple_status_get_attr_string(status, "message"),
 			get_status(shared_status)))
@@ -478,7 +480,7 @@ account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatu
 {
 	GTalkSharedStatusEl *el = NULL;
 
-	purple_debug_info(PLUGIN_STATIC_NAME, "account_status_changed: %s from %s to %s\n", purple_account_get_username(account), purple_status_type_get_name(purple_status_get_type(old)), purple_status_type_get_name(purple_status_get_type(new)));
+	purple_debug_info(PLUGIN_STATIC_NAME, "account_status_changed: %s\n", purple_account_get_username(account));
 
 	el = ssl_find(account);
 
@@ -632,10 +634,9 @@ sync_with_shared_status(PurpleAccount *account, xmlnode *iq)
 	xmlnode_remove_attrib(query, "status-list-contents-max");
 
 	// this should not be necessary because accounts should be added when receiving protocol/disco#info
-	
     if (!ssl_find(account))
 		ssl_add(account);
-    
+
 	ssl_set_shared_status(account, query);
 	
 	if (is_shared_status_invisible(query))
@@ -767,7 +768,6 @@ plugin_load(PurplePlugin *plugin)
 	this_plugin = plugin;
 	char *pref = NULL;
 	gboolean warn = FALSE;
-    
 
 	purple_debug_info(PLUGIN_STATIC_NAME, "plugin_load\n");
 	
@@ -913,11 +913,6 @@ static PurplePluginUiInfo prefs_info = {
 */
 
 
-static void
-init_plugin (PurplePlugin * plugin)
-{
-}
-
 
 /* For specific notes on the meanings of each of these members, consult the C Plugin Howto
  * on the website. */
@@ -949,5 +944,10 @@ static PurplePluginInfo info = {
 	NULL,
 	NULL,
 };
+
+static void
+init_plugin (PurplePlugin * plugin)
+{
+}
 
 PURPLE_INIT_PLUGIN(gtalk_shared_status, init_plugin, info);

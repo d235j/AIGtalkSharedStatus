@@ -60,7 +60,7 @@
 #define PLUGIN_ID			"gtalk-shared-status"
 #define PLUGIN_NAME			"GTalk Shared Status"
 #define PLUGIN_VERSION		"0.2.5"
-#define PLUGIN_STATIC_NAME	"gtalk-shared-status"
+#define PLUGIN_STATIC_NAME	"gtalk_shared_status"
 #define PLUGIN_SUMMARY		"Provide Google Shared Status compatibility."
 #define PLUGIN_DESCRIPTION	"Provide Google Shared Status compatibility."
 #define PLUGIN_AUTHOR		"Federico Zanco <federico.zanco@gmail.com>"
