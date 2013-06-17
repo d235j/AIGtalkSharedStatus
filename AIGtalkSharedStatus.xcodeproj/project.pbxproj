@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		632B7D37176D244400F4F28F /* AIGtalkSharedStatusPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */; };
-		632B7D38176D244400F4F28F /* ESPurpleJabberAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */; };
+		632B7D38176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 632B7D36176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m */; };
 		632B7D3F176D245800F4F28F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 632B7D3D176D245800F4F28F /* InfoPlist.strings */; };
 		639ABD85176CD21300F752D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABD84176CD21300F752D7 /* Cocoa.framework */; };
 		639ABDFE176CD49B00F752D7 /* libglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639ABDF4176CD45800F752D7 /* libglib.framework */; };
@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIGtalkSharedStatusPlugin.h; path = AIGtalkSharedStatus/AIGtalkSharedStatusPlugin.h; sourceTree = SOURCE_ROOT; };
 		632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIGtalkSharedStatusPlugin.m; path = AIGtalkSharedStatus/AIGtalkSharedStatusPlugin.m; sourceTree = SOURCE_ROOT; };
-		632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESPurpleJabberAccount.m; path = AIGtalkSharedStatus/ESPurpleJabberAccount.m; sourceTree = SOURCE_ROOT; };
+		632B7D36176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AIPurpleGTalkAccount+SharedStatus.m"; path = "AIGtalkSharedStatus/AIPurpleGTalkAccount+SharedStatus.m"; sourceTree = SOURCE_ROOT; };
 		632B7D39176D244B00F4F28F /* AIGtalkSharedStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AIGtalkSharedStatus-Info.plist"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist"; sourceTree = SOURCE_ROOT; };
 		632B7D3A176D244B00F4F28F /* AIGtalkSharedStatus-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AIGtalkSharedStatus-Prefix.pch"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		632B7D3E176D245800F4F28F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = AIGtalkSharedStatus/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -109,7 +109,7 @@
 			children = (
 				632B7D32176D244400F4F28F /* AIGtalkSharedStatusPlugin.h */,
 				632B7D33176D244400F4F28F /* AIGtalkSharedStatusPlugin.m */,
-				632B7D36176D244400F4F28F /* ESPurpleJabberAccount.m */,
+				632B7D36176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m */,
 				639ABE09176CD60E00F752D7 /* gtalk-shared-status.c */,
 				639ABE0A176CD60E00F752D7 /* gtalk-shared-status.h */,
 				639ABD8B176CD21300F752D7 /* Supporting Files */,
@@ -208,7 +208,7 @@
 			files = (
 				639ABE0B176CD60E00F752D7 /* gtalk-shared-status.c in Sources */,
 				632B7D37176D244400F4F28F /* AIGtalkSharedStatusPlugin.m in Sources */,
-				632B7D38176D244400F4F28F /* ESPurpleJabberAccount.m in Sources */,
+				632B7D38176D244400F4F28F /* AIPurpleGTalkAccount+SharedStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

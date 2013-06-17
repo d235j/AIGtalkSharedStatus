@@ -16,20 +16,11 @@ extern void purple_init_gtalk_shared_status_plugin();
 
 - (void) installLibpurplePlugin
 {
-    // we need to override Adium's hardcoded Invisible == Away logic for XMPP.
-    @autoreleasepool {
-        Method originalMethod = class_getInstanceMethod([ESPurpleJabberAccount class],
-                                                        @selector(purpleStatusIDForStatus:arguments:));
-        Method newMethod = class_getInstanceMethod([ESPurpleJabberAccount class],
-                                                   @selector(purpleStatusIDForStatusOverride:arguments:));
-        method_exchangeImplementations(originalMethod, newMethod);
-        
-        purple_signal_connect(purple_accounts_get_handle(),
-                              "account-status-changed",
-                              adium_purple_get_handle(),
-                              PURPLE_CALLBACK(account_status_changed_cb),
-                              NULL);
-    }
+    purple_signal_connect(purple_accounts_get_handle(),
+                          "account-status-changed",
+                          adium_purple_get_handle(),
+                          PURPLE_CALLBACK(account_status_changed_cb),
+                          NULL);
 }
 
 - (void) loadLibpurplePlugin
