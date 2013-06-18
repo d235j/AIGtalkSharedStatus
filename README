@@ -5,5 +5,5 @@ Currently it only works with Adium 1.7 nightlies. I will fix this later.
 This uses gtalk-shared-status libpurple plugin code by Federico Zanco, obtained from
 http://www.siorarina.net/gtalk-shared-status/ . This code is licensed under the GNU GPL V2.0 or later.
 
-The rest of the code is my own, and is public domain. Feel free to do whatever you want with it.
+The rest of the code is my own, and is in the public domain. Feel free to do whatever you want with it.
 
