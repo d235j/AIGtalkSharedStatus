@@ -2,8 +2,7 @@
 //  ESPurpleJabberAccountSwizzle.m
 //  GoogleSharedStatus
 //
-//  Created by David on 6/15/13.
-//  Copyright (c) 2013 David Ryskalczyk. All rights reserved.
+//  Created by David Ryskalczyk on 6/15/13.
 //
 
 #import <Adium/AIStatus.h>

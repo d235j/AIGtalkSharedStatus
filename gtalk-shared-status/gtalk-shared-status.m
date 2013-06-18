@@ -1,6 +1,7 @@
 /*
  * GTalk Shared Status Plugin
  *  Copyright (C) 2010, Federico Zanco <federico.zanco ( at ) gmail.com>
+ *  Modified for Adium 2013, David Ryskalczyk
  *
  * 
  * License:

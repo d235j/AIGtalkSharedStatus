@@ -29,7 +29,7 @@
 		632B7D39176D244B00F4F28F /* AIGtalkSharedStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AIGtalkSharedStatus-Info.plist"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist"; sourceTree = SOURCE_ROOT; };
 		632B7D3A176D244B00F4F28F /* AIGtalkSharedStatus-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AIGtalkSharedStatus-Prefix.pch"; path = "AIGtalkSharedStatus/AIGtalkSharedStatus-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		632B7D3E176D245800F4F28F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = AIGtalkSharedStatus/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		639ABD81176CD21300F752D7 /* AIGtalkSharedStatus.AdiumLibpurplePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIGtalkSharedStatus.AdiumLibpurplePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		639ABD81176CD21300F752D7 /* AIGTalkSharedStatus.AdiumLibpurplePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIGTalkSharedStatus.AdiumLibpurplePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		639ABD84176CD21300F752D7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		639ABDF4176CD45800F752D7 /* libglib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libglib.framework; path = ../adium/Frameworks/libglib.framework; sourceTree = "<group>"; };
 		639ABDF5176CD45800F752D7 /* libgobject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libgobject.framework; path = ../adium/Frameworks/libgobject.framework; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		639ABD82176CD21300F752D7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				639ABD81176CD21300F752D7 /* AIGtalkSharedStatus.AdiumLibpurplePlugin */,
+				639ABD81176CD21300F752D7 /* AIGTalkSharedStatus.AdiumLibpurplePlugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,7 +145,7 @@
 			);
 			name = AIGtalkSharedStatus;
 			productName = AIGtalkSharedStatus;
-			productReference = 639ABD81176CD21300F752D7 /* AIGtalkSharedStatus.AdiumLibpurplePlugin */;
+			productReference = 639ABD81176CD21300F752D7 /* AIGTalkSharedStatus.AdiumLibpurplePlugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -320,7 +320,7 @@
 				);
 				INFOPLIST_FILE = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Application Support/Adium 2.0/PlugIns";
-				PRODUCT_NAME = AIGtalkSharedStatus;
+				PRODUCT_NAME = AIGTalkSharedStatus;
 			};
 			name = Debug;
 		};
@@ -343,7 +343,7 @@
 				);
 				INFOPLIST_FILE = "AIGtalkSharedStatus/AIGtalkSharedStatus-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Application Support/Adium 2.0/PlugIns";
-				PRODUCT_NAME = AIGtalkSharedStatus;
+				PRODUCT_NAME = AIGTalkSharedStatus;
 			};
 			name = Release;
 		};
