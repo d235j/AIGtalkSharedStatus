@@ -67,6 +67,8 @@ static gboolean					plugin_unload (PurplePlugin *plugin);
 static PurplePluginPrefFrame *	get_plugin_pref_frame(PurplePlugin *plugin);
 static void						init_plugin (PurplePlugin * plugin);
 static void                     set_account_status(PurpleAccount *account, const char *statusID, const char *statusString);
+static AIStatus                        *getAndAddAIStatusFromTypeAndText(const char *statusID, const char *statusString);
+static void update_status_list(const xmlnode *query);
 
 
 static gint
@@ -425,23 +427,6 @@ get_status(const xmlnode *query)
 	else
 		return NULL;
 
-    /*
-    const char *show = map_status(FROM_GOOGLE_TO_PURPLE, get_show(query));
-    xmlnode *status_list = xmlnode_get_child(query, "status-list");
-    xmlnode *status = xmlnode_get_child(status_list, "status");;
-    
-    do {
-        if(g_strcmp0(xmlnode_get_attrib(status, "show"), show) == 0) {
-            break;
-        }
-        status = xmlnode_get_next_twin(status);
-    } while(status != NULL);
-    if(status != NULL) {
-        return xmlnode_get_data(status);
-    } else {
-        return NULL;
-    }
-     */
 }
 
 
@@ -658,7 +643,10 @@ sync_with_shared_status(PurpleAccount *account, xmlnode *iq)
 		ssl_add(account);
 
 	ssl_set_shared_status(account, query);
-	
+
+    // sync remote statuses to local adium
+    update_status_list(query);
+
 	if (is_shared_status_invisible(query))
 	{
 		//purple_account_set_status(account, "invisible", TRUE, NULL);
@@ -912,54 +900,83 @@ static void
 set_account_status(PurpleAccount *account, const char *statusID, const char *statusString)
 {
     @autoreleasepool {
-        AIStatus *currentStatus;
         CBPurpleAccount	*aIaccount = accountLookup(account);
         if(![aIaccount isKindOfClass:[AIPurpleGTalkAccount class]]) {
             return;
         }
+        
+        NSLog(@"Message: %s", statusString);
 
-        PurpleStatusPrimitive status = purple_primitive_get_type_from_id(statusID);
-
-        switch (status) {
-            case PURPLE_STATUS_AWAY:
-            case PURPLE_STATUS_EXTENDED_AWAY:
-            case PURPLE_STATUS_UNAVAILABLE:
-                currentStatus = [adium.statusController awayStatus];
-                break;
-            case PURPLE_STATUS_INVISIBLE:
-                currentStatus = [adium.statusController invisibleStatus];
-                break;
-            case PURPLE_STATUS_OFFLINE:
-                currentStatus = [adium.statusController offlineStatus];
-                break;
-            case PURPLE_STATUS_AVAILABLE:
-            case PURPLE_STATUS_TUNE:
-            default:
-                currentStatus = [adium.statusController availableStatus];
-                break;
-        }
-
-        if(statusString != NULL) {
-            AIStatus *newStatus = NULL;
-            NSString *statusNSString = [NSString stringWithUTF8String:statusString];
-            for(AIStatus *statusItem in [adium.statusController flatStatusSet]) {
-                if ([statusItem statusType] == [currentStatus statusType] &&
-                    [[statusItem statusMessageString] isEqualToString:statusNSString]) {
-                    newStatus = statusItem;
-                    break;
-                }
-            }
-            if(newStatus == NULL) {
-                newStatus = [AIStatus statusOfType:[currentStatus statusType]];
-                [newStatus setStatusMessageString:statusNSString];
-                [newStatus setTitle:statusNSString];
-                [adium.statusController addStatusState:newStatus];
-            }
-            currentStatus = newStatus;
-        }
+        AIStatus *currentStatus = getAndAddAIStatusFromTypeAndText(statusID, statusString);
 
         if([aIaccount statusType] != [currentStatus statusType] || [aIaccount statusMessageString] != [currentStatus statusMessageString]) {
                         [aIaccount setStatusState:currentStatus];
         }
     }
+}
+
+static AIStatus *getAndAddAIStatusFromTypeAndText(const char *statusID, const char *statusString) {
+
+    AIStatus *status;
+
+    switch (purple_primitive_get_type_from_id(statusID)) {
+        case PURPLE_STATUS_AWAY:
+        case PURPLE_STATUS_EXTENDED_AWAY:
+        case PURPLE_STATUS_UNAVAILABLE:
+            status = [adium.statusController awayStatus];
+            break;
+        case PURPLE_STATUS_INVISIBLE:
+            status = [adium.statusController invisibleStatus];
+            break;
+        case PURPLE_STATUS_OFFLINE:
+            status = [adium.statusController offlineStatus];
+            break;
+        case PURPLE_STATUS_AVAILABLE:
+        case PURPLE_STATUS_TUNE:
+        default:
+            status = [adium.statusController availableStatus];
+            break;
+    }
+
+    if(statusString != NULL) {
+        AIStatus *newStatus = NULL;
+        NSString *statusNSString = [NSString stringWithUTF8String:statusString];
+        for(AIStatus *statusItem in [adium.statusController flatStatusSet]) {
+            if ([statusItem statusType] == [status statusType] &&
+                [[statusItem statusMessageString] isEqualToString:statusNSString]) {
+                newStatus = statusItem;
+                break;
+            }
+        }
+        if(newStatus == NULL) {
+            newStatus = [AIStatus statusOfType:[status statusType]];
+            [newStatus setStatusMessageString:statusNSString];
+            [newStatus setTitle:statusNSString];
+            [newStatus setMutabilityType:AISecondaryLockedStatusState];
+            [adium.statusController addStatusState:newStatus];
+        }
+        return newStatus;
+    } else {
+        return status;
+    }
+}
+
+static void update_status_list(const xmlnode *origQuery) {
+    // assemble a list of remote statuses
+    xmlnode *query = xmlnode_copy(origQuery);
+    xmlnode *statusList = NULL;
+    // iterate over set of status lists
+    statusList = xmlnode_get_child(query, "status-list");
+    while(statusList != NULL) {
+        const char *statusType = xmlnode_get_attrib(statusList, "show");
+        xmlnode *statusNode = xmlnode_get_child(statusList, "status");
+        // iterate over each individual status list
+        while(statusNode != NULL) {
+            getAndAddAIStatusFromTypeAndText(map_status(FROM_GOOGLE_TO_PURPLE, statusType), xmlnode_get_data(statusNode)); // this adds statuses to the list!
+            statusNode = xmlnode_get_next_twin(statusNode);
+        }
+        xmlnode_free(statusNode);
+        statusList = xmlnode_get_next_twin(statusList);
+    }
+    xmlnode_free(statusList);
 }
