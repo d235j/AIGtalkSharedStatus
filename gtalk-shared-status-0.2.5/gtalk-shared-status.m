@@ -870,68 +870,6 @@ plugin_unload (PurplePlugin *plugin)
 	return TRUE;
 }
 
-
-/*
-static PurplePluginPrefFrame *
-get_plugin_pref_frame(PurplePlugin *plugin)
-{
-	PurplePluginPrefFrame *frame;
-	PurplePluginPref *pref;
-	GList *accounts = NULL;
-	char *label = NULL;
-	char *name = NULL;
-	char *pref_str = NULL;
-	
- 	purple_notify_warning(
- 		this_plugin,
- 		PLUGIN_NAME,
- 		"WARNING!",
- 		"Every change in account settings requires a restart. Please restart after any change.");
-
-	
-	frame = purple_plugin_pref_frame_new();
-	
-	// unique google shared status
-	pref = purple_plugin_pref_new_with_name_and_label(
-				PREF_UNIQUE_GOOGLE_SHARED_STATUS,
-				"Unique Google Shared Status:\nthis means that every active Google account has the same state \nand every change is propagate to all accounts");
-	purple_plugin_pref_frame_add(frame, pref);
-	
-	// enable google shared status accounts
-	for (accounts = purple_accounts_get_all(); accounts; accounts = accounts->next)
-	{
-		if (!g_strcmp0(purple_account_get_protocol_id(accounts->data), "prpl-jabber"))
-		{
-			name = get_simple_name((PurpleAccount *) accounts->data);
-			pref_str = make_account_pref((PurpleAccount *) accounts->data);
-			label = g_strdup_printf("Enable Google Shared Status for account: %s", name);
-			pref = purple_plugin_pref_new_with_name_and_label(pref_str, label);
-			purple_plugin_pref_frame_add(frame, pref);
-			g_free(label);
-			g_free(name);
-			g_free(pref_str);
-		}
-	}
-	
-	return frame;
-}
-*/
-/*
-static PurplePluginUiInfo prefs_info = {
-	get_plugin_pref_frame,
-	0,
-	NULL,
-
-	*//* padding *//*
-	NULL,
-	NULL,
-	NULL,
-	NULL
-};
-*/
-
-
-
 /* For specific notes on the meanings of each of these members, consult the C Plugin Howto
  * on the website. */
 static PurplePluginInfo info = {
@@ -969,10 +907,6 @@ init_plugin (PurplePlugin * plugin)
 }
 
 PURPLE_INIT_PLUGIN(gtalk_shared_status, init_plugin, info);
-
-
-
-// 			purple_account_set_status(account, map_status(FROM_GOOGLE_TO_PURPLE, get_show(query)), TRUE, "message", get_status(query), NULL);
 
 static void
 set_account_status(PurpleAccount *account, const char *statusID, const char *statusString)
@@ -1023,8 +957,6 @@ set_account_status(PurpleAccount *account, const char *statusID, const char *sta
             }
             currentStatus = newStatus;
         }
-
-        NSLog(@"Message: %s", statusString);
 
         if([aIaccount statusType] != [currentStatus statusType] || [aIaccount statusMessageString] != [currentStatus statusMessageString]) {
                         [aIaccount setStatusState:currentStatus];

@@ -8,8 +8,6 @@
 
 #import "AIGtalkSharedStatusPlugin.h"
 
-#define KEY_JABBER_PRIORITY_AWAY		@"Jabber:Priority when Away"
-
 extern void purple_init_gtalk_shared_status_plugin();
 
 @implementation AIGtalkSharedStatusPlugin

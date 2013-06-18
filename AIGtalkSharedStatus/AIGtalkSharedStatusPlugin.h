@@ -19,6 +19,3 @@
 }
 
 @end
-
-static void
-account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatus *new, gpointer data);
