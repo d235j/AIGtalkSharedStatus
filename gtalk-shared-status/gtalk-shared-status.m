@@ -503,7 +503,7 @@ account_status_changed_cb(PurpleAccount *account, PurpleStatus *old, PurpleStatu
 			this_plugin,
 			PLUGIN_NAME,
 			purple_account_get_username(account),
-			"You've changed from Invisible to Idle/Away but your shared status is still Invisible!\nChange first to Available or Do not Disturb and then to Idle/Away.");
+			"You've changed from Invisible to Idle but your shared status is still Invisible!\nThis is a bug, please report it!");
 	}
 		
 

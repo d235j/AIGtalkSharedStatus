@@ -42,8 +42,8 @@
             break; // allow main code to handle these cases (Online and Offline)
     }
     
-    // forced-idle state
-    if([statusState shouldForceInitialIdleTime] || ([self valueForProperty:@"idleSince"] != nil)) {
+    // forced-idle state, only if not invisible
+    if(statusState.statusType != AIInvisibleStatusType && ([statusState shouldForceInitialIdleTime] || ([self valueForProperty:@"idleSince"] != nil))) {
         statusID = jabber_buddy_state_get_status_id(JABBER_BUDDY_STATE_AWAY);
     }
     
@@ -69,8 +69,10 @@
 - (void)setAccountIdleSinceTo:(NSDate *)idleSince
 {
     [super setAccountIdleSinceTo:idleSince];
-    // we need to update the status when idle state changes.
-    [self setStatusState:[self statusState]];
+    // we need to update the status when idle state changes, unless we are invisible.
+    if([[self statusState] statusType] != AIInvisibleStatusType) {
+        [self setStatusState:[self statusState]];
+    }
 }
 
 
